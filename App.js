@@ -59,7 +59,7 @@ export default function Scanner() {
       />
       <BarcodeMask edgeColor="#62B1F6" showAnimatedLine/>
       <View style={styles.boutons}>
-        {scanned && <Button title={`Mettre a jour l\'appareil numero ${donnee}`} onPress={() => Maj()}/>}
+        {scanned && <Button title={`Mettre a jour l\'appareil`} onPress={() => Maj()}/>}
       </View>
       <View style={styles.boutons}>
         {scanned && <Button title={`re scan`} onPress={() => setScanned(false)}/>} 
@@ -72,13 +72,13 @@ export default function Scanner() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    backgroundColor: '#fff',
+    alignItems: 'flex-end',
+    justifyContent: 'space-evenly',
   },
   boutons: {
     height: 30,
+    bottom: 50
   }
 });
