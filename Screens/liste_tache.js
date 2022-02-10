@@ -1,12 +1,42 @@
-import React from "react";
+import React, {useState, useEffect, Component} from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 export default function Tache({ navigation }) {
   const goBack = () => navigation.goBack('Scan');
+  const [data, setData] = useState([]);
+
+  const list = () => {
+   
+
+    var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'http://192.168.5.252/fog/task/current',
+  headers: { 
+    'fog-api-token': 'ZThkNjYxMTliZDFmMjA5MDMxMDRlMTgwOTNiOTdhY2Q4MDU4ZjU3N2JkZmE5NzM5N2ExOWYwMzhjNjAxNGEzZjNiNDk2YWVhZWMzNWJkYzIxNzI0OTBjZWM4ZDE1MjExZWY4MTgzZDMyNjVjNGNmYWY3MDVlNjkyNjgxYWZjMmU=', 
+    'fog-user-token': 'OTgxMzVkMDg0NmY2NGNlOWIyN2I3NzUxYmI4MDQ3NGE1NTI4MWUwNDZjZGRmNTM0OWQ2N2FiN2U4MjRiMDYyYTg4NmM3ZDFiODU4NTAxZWI4ZWNhZTQ3YmRiNjYwMmZkZmMyYjUyZDMzZWVhZDU5NjZlZGYwYWQ0ODUxNTNkZDM='
+  }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+  setData(response.data)
+})
+.catch(function (error) {
+  console.log(error);
+});
+    
+
+  }
+  useEffect(() => {
+    list();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Details screen</Text>
+      <Text>{data["tasks"]}</Text>
       <Button onPress={goBack} title={`Go back`} />
     </View>
   );
