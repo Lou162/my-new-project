@@ -17,11 +17,12 @@ var requestOptions = {
 };
 
 
-export default function Scanner() {
+export default function Scanner({navigation}) {
+    const goBack = () => navigation.navigate('liste');
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [donnee, setDonnee] = useState("");
-  
+
     useEffect(() => {
       (async () => {
         const { status } = await 
@@ -63,7 +64,7 @@ export default function Scanner() {
           {scanned && <Button title={`Mettre a jour l\'appareil`} onPress={() => Maj()}/>}
         </View>
         <View style={styles.boutons}>
-          {scanned && <Button title={`re scan`} onPress={() => setScanned(false)}/>} 
+          {scanned && <Button title={`liste`} onPress={goBack}/>} 
         </View>
         
       </View>

@@ -1,12 +1,12 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
-import Scanner from "./Scanner";
+import Root from "./root";
 
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Scanner />
+        <Root />      
     </NavigationContainer>
   );
 }
