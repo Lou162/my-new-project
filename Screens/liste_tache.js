@@ -1,14 +1,14 @@
-import React, {useState, useEffect, Component} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 export default function Tache({ navigation }) {
   const goBack = () => navigation.goBack('Scan');
-  const [data, setData] = useState([]);
+  const [donnee, setDonnee] = useState([]);
+  const isMountedRef = useRef(null);
 
-  const list = () => {
-   
 
-    var axios = require('axios');
+  
+var axios = require('axios');
 
 var config = {
   method: 'get',
@@ -19,24 +19,29 @@ var config = {
   }
 };
 
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-  setData(response.data)
-})
-.catch(function (error) {
-  console.log(error);
-});
-    
-
-  }
-  useEffect(() => {
-    list();
-  }, []);
+useEffect(()=>{
+  isMountedRef.current = true;
+  axios(config)
+  .then(function (response) {
+    if(isMountedRef.current){
+      console.log(JSON.stringify(response.data.tasks[0].state["name"]));
+      setDonnee(response.data.tasks);
+    } 
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  return () => isMountedRef.current = false;},[]);
 
   return (
     <View style={styles.container}>
-      <Text>{data["tasks"]}</Text>
+      {
+        donnee.map((prop) => {
+          return (
+            <Text>{prop.host["name"]} : {prop.state["name"]}</Text>
+          );
+       })
+      }
       <Button onPress={goBack} title={`Go back`} />
     </View>
   );
