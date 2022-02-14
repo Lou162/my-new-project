@@ -64,7 +64,7 @@ export default function Scanner({navigation}) {
           {scanned && <Button title={`Mettre a jour l\'appareil`} onPress={() => Maj()}/>}
         </View>
         <View style={styles.boutons}>
-          {scanned && <Button title={`liste`} onPress={goBack}/>} 
+         <Button title={`liste`} onPress={goBack}/>
         </View>
         
       </View>
