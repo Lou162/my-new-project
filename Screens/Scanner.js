@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 import BarcodeMask from 'react-native-barcode-mask';
 import {BarCodeScanner} from 'expo-barcode-scanner';
+import { unmountComponentAtNode } from 'react-dom';
+import { useIsFocused } from "@react-navigation/native";
 
 var myHeaders = new Headers();
 myHeaders.append("fog-api-token", "ZThkNjYxMTliZDFmMjA5MDMxMDRlMTgwOTNiOTdhY2Q4MDU4ZjU3N2JkZmE5NzM5N2ExOWYwMzhjNjAxNGEzZjNiNDk2YWVhZWMzNWJkYzIxNzI0OTBjZWM4ZDE1MjExZWY4MTgzZDMyNjVjNGNmYWY3MDVlNjkyNjgxYWZjMmU=");
@@ -18,7 +20,8 @@ var requestOptions = {
 
 
 export default function Scanner({navigation}) {
-    const goBack = () => navigation.navigate('liste');
+  const isFocused = useIsFocused();
+    const goBack = () => {navigation.navigate('liste')}
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [donnee, setDonnee] = useState("");
@@ -44,7 +47,7 @@ export default function Scanner({navigation}) {
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
     };
-  
+
   
     if (hasPermission === null) {
       return <Text>Requesting for camera permission</Text>;
@@ -55,10 +58,11 @@ export default function Scanner({navigation}) {
   
     return (
       <View style={styles.container}>
-        <BarCodeScanner
+        {isFocused && <BarCodeScanner
+        id ="scanner"
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
-        />
+        />}
         <BarcodeMask edgeColor="#62B1F6" showAnimatedLine/>
         <View style={styles.boutons}>
           {scanned && <Button title={`Mettre a jour l\'appareil`} onPress={() => Maj()}/>}

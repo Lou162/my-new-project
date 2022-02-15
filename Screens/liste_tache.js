@@ -38,7 +38,7 @@ useEffect(()=>{
       {
         donnee.map((prop) => {
           return (
-            <Text>{prop.host["name"]} : {prop.state["name"]}</Text>
+            <Text key = {prop.id}>{prop.host["name"]} : {prop.state["name"]}</Text>
           );
        })
       }
