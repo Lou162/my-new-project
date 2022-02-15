@@ -22,6 +22,7 @@ var requestOptions = {
 export default function Scanner({navigation}) {
   const isFocused = useIsFocused();
     const goBack = () => {navigation.navigate('liste')}
+    const goBack2 = () => {navigation.navigate('parametre')}
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [donnee, setDonnee] = useState("");
@@ -66,9 +67,12 @@ export default function Scanner({navigation}) {
         <BarcodeMask edgeColor="#62B1F6" showAnimatedLine/>
         <View style={styles.boutons}>
           {scanned && <Button title={`Mettre a jour l\'appareil`} onPress={() => Maj()}/>}
+          {scanned&&<Button title={'rescan'} onPress={() => setScanned(false)}/>}
         </View>
         <View style={styles.boutons}>
-          <Button title={`liste`} onPress={goBack}/>
+          <Button title={'liste'} onPress={goBack}/>
+          <Button title={'parametre'} onPress={goBack2}/>
+          
         </View>
         
       </View>
