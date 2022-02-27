@@ -9,7 +9,10 @@ const Stack = createStackNavigator();
 
 export default function Root() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}>
       <Stack.Screen name="Scan" component={Scanner} />
       <Stack.Screen name="liste" component={Tache} />
       <Stack.Screen name="parametre" component={Parametrage} />

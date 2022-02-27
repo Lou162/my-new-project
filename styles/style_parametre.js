@@ -1,0 +1,240 @@
+import { StyleSheet, Dimensions } from 'react-native';
+
+const style = StyleSheet.create({
+  container: {
+    position: "relative",
+    width: Dimensions.get("window").width,
+    height: 800,
+    borderRadius: 0,
+    overflow: "hidden",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    backgroundColor: "rgba(255,255,255,1)",
+    left: 0,
+    top: 0
+  },
+  Header: {
+    position: "absolute",
+    width: 482,
+    height: 110,
+    transform: [{ translateX: -108 }, { translateY: 25 }, { rotate: "0deg" }],
+    overflow: "hidden",
+    backgroundColor: "rgba(0,0,0,0)"
+  },
+  rectangle1: {
+    position: "absolute",
+    width: 482,
+    height: 110,
+    borderRadius: 0,
+    opacity: 1,
+    left: 0,
+    right: "auto",
+    top: 0,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    backgroundColor: "rgba(13,44,84,1)"
+  },
+  parametre: {
+    position: "absolute",
+    width: "auto",
+    height: "auto",
+    left: 235,
+    right: "auto",
+    top: 44,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    textDecorationLine: "none",
+    fontSize: 18,
+    color: "rgba(255,255,243,1)",
+    textAlign: "center",
+    textAlignVertical: "top",
+    letterSpacing: 0.1
+  },
+  bouton_retour: {
+    position: "absolute",
+    width: 50,
+    height: 50,
+    transform: [{ translateX: 123 }, { translateY: 32 }, { rotate: "0deg" }],
+    overflow: "hidden",
+    backgroundColor: "rgba(0,0,0,0)"
+  },
+  fleche: {
+    position: "absolute",
+    width: 41,
+    height: 41,
+    borderRadius: 0,
+    opacity: 1,
+    left: 5,
+    right: "auto",
+    top: 4,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }]
+  },
+  footer: {
+    position: "absolute",
+    width: 482,
+    height: 110,
+    transform: [{ translateX: 0 }, { translateY: 580 }, { rotate: "0deg" }],
+    overflow: "hidden",
+    backgroundColor: "rgba(0,0,0,0)"
+  },
+  rectangle2: {
+    position: "absolute",
+    width: 360,
+    height: 110,
+    borderRadius: 0,
+    opacity: 1,
+    left: 0,
+    right: "auto",
+    top: 0,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    backgroundColor: "rgba(13,44,84,1)"
+  },
+  container_modifier: {
+    position: "absolute",
+    width: 136,
+    height: 37,
+    transform: [{ translateX: 110 }, { translateY: 30 }, { rotate: "0deg" }],
+    overflow: "hidden",
+    backgroundColor: "rgba(0,0,0,0)"
+  },
+  bouton_modifier: {
+    position: "absolute",
+    width: 136,
+    height: 37,
+    borderRadius: 25,
+    opacity: 1,
+    left: 0,
+    right: "auto",
+    top: 0,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    backgroundColor: "rgba(255,67,101,1)"
+  },
+  modifier: {
+    position: "absolute",
+    width: "auto",
+    height: "auto",
+    left: 45,
+    right: "auto",
+    top: 8,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    textDecorationLine: "none",
+    fontSize: 14,
+    color: "rgba(255,255,243,1)",
+    textAlign: "left",
+    textAlignVertical: "top",
+    letterSpacing: 0.1
+  },
+  container_valider: {
+    position: "absolute",
+    width: 136,
+    height: 37,
+    transform: [{ translateX: 110 }, { translateY: 30 }, { rotate: "0deg" }],
+    overflow: "hidden",
+    backgroundColor: "rgba(0,0,0,0)"
+  },
+  bouton_valider: {
+    position: "absolute",
+    width: 136,
+    height: 37,
+    borderRadius: 25,
+    opacity: 1,
+    left: 0,
+    right: "auto",
+    top: 0,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    backgroundColor: "rgba(0,217,192,1)"
+  },
+  valider: {
+    position: "absolute",
+    width: "auto",
+    height: "auto",
+    left: 45,
+    right: "auto",
+    top: 8,
+    bottom: "auto",
+    transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
+    fontFamily: "Roboto",
+    fontWeight: "400",
+    textDecorationLine: "none",
+    fontSize: 14,
+    color: "rgba(255,255,243,1)",
+    textAlign: "left",
+    textAlignVertical: "top",
+    letterSpacing: 0.1
+  },
+  param:{
+    position:"absolute",
+    width:259,
+    height:117,
+    transform:[{translateX:75},{translateY:239},{rotate:"0deg"}],
+    overflow:"hidden",
+    backgroundColor:"rgba(0,0,0,0)"
+  },
+  parametre_ip:{
+    position:"absolute",
+    width:259,
+    height:21,
+    transform:[{translateX:0},{translateY:0},{rotate:"0deg"}],
+    overflow:"hidden",
+    backgroundColor:"rgba(0,0,0,0)"
+  },
+  Ip:{
+    position:"absolute",
+    width:"auto",
+    height:"auto",
+    left:0,
+    right:"auto",
+    top:2,
+    bottom:"auto",
+    transform:[{translateX:0},{translateY:0},{rotate:"0deg"}],
+    fontFamily:"Roboto",
+    fontWeight:"400",
+    textDecorationLine:"none",
+    fontSize:14,
+    color:"rgba(0,0,0,1)",
+    textAlign:"left",
+    textAlignVertical:"top",
+    letterSpacing:0.1
+  },
+  input:{
+    position:"absolute",
+    width:154,
+    height:21,
+    borderRadius:0,
+    opacity:1,
+    borderWidth:2,
+    borderColor:"rgba(0,0,0,1)",
+    left:0,
+    right:"auto",
+    top:0,
+    bottom:"auto",
+    transform:[{translateX:105},{translateY:0},{rotate:"0deg"}],
+    backgroundColor:"rgba(0,0,0,0)"
+  },
+  parametre_ip_2:{
+    position:"absolute",
+    width:259,
+    height:21,
+    transform:[{translateX:0},{translateY:48},{rotate:"0deg"}],
+    overflow:"hidden",
+    backgroundColor:"rgba(0,0,0,0)"
+  },
+  parametre_ip_3:{
+    position:"absolute",
+    width: 259,
+    height:21,
+    transform:[{translateX:0},{translateY:96},{rotate:"0deg"}],
+    overflow:"hidden",
+    backgroundColor:"rgba(0,0,0,0)"
+  }
+});
+
+export { style }
