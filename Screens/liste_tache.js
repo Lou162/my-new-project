@@ -22,9 +22,6 @@ export default function Tache({ navigation }) {
       'fog-user-token': `${user}`
     }
   };
-  console.log(ip)
-  console.log(user)
-  console.log(api)
   useEffect(() => {
     isMountedRef.current = true;
     axios(config)
