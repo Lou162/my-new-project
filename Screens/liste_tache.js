@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import { style } from "../styles/style_liste";
 
@@ -16,10 +16,10 @@ export default function Tache({ navigation }) {
 
   var config = {
     method: 'get',
-    url: 'http://192.168.5.252/fog/task/current',
+    url: `http://${ip}/fog/task/current`,
     headers: {
-      'fog-api-token': 'ZThkNjYxMTliZDFmMjA5MDMxMDRlMTgwOTNiOTdhY2Q4MDU4ZjU3N2JkZmE5NzM5N2ExOWYwMzhjNjAxNGEzZjNiNDk2YWVhZWMzNWJkYzIxNzI0OTBjZWM4ZDE1MjExZWY4MTgzZDMyNjVjNGNmYWY3MDVlNjkyNjgxYWZjMmU=',
-      'fog-user-token': 'OTgxMzVkMDg0NmY2NGNlOWIyN2I3NzUxYmI4MDQ3NGE1NTI4MWUwNDZjZGRmNTM0OWQ2N2FiN2U4MjRiMDYyYTg4NmM3ZDFiODU4NTAxZWI4ZWNhZTQ3YmRiNjYwMmZkZmMyYjUyZDMzZWVhZDU5NjZlZGYwYWQ0ODUxNTNkZDM='
+      'fog-api-token': `${api}`,
+      'fog-user-token': `${user}`
     }
   };
   console.log(ip)
@@ -30,7 +30,6 @@ export default function Tache({ navigation }) {
     axios(config)
       .then(function (response) {
         if (isMountedRef.current) {
-          console.log(JSON.stringify(response.data.tasks[0].state["name"]));
           setDonnee(response.data.tasks);
         }
       })
@@ -38,7 +37,7 @@ export default function Tache({ navigation }) {
         console.log(error);
       });
     return () => isMountedRef.current = false;
-  }, []);
+  });
 
   return (
     <View style={style.container}>
@@ -57,14 +56,14 @@ export default function Tache({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={style.liste_machine}>
-        <Text style={style.etat}>{ip} : {user} : {api}</Text>
-        {/* {
-        donnee.map((prop) => {
-          return (
-            <Text key = {prop.id}>{prop.host["name"]} : {prop.state["name"]}</Text>
-          );
-       })
-      } */}
+        {/* <Text style={style.etat}>{ip} : {user} : {api}</Text> */}
+        {
+          donnee.map((prop) => {
+            return (
+              <Text key={prop.id}>{prop.host["name"]} : {prop.state["name"]}</Text>
+            );
+          })
+        }
       </View>
 
       {/* <Button onPress={goBack} title={`Go back`} /> */}

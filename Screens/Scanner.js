@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import BarcodeMask from 'react-native-barcode-mask';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useIsFocused } from "@react-navigation/native";
 
 import { styles } from "../styles/style_scanner"
-
-// var myHeaders = new Headers();
-// myHeaders.append("fog-api-token", "ZThkNjYxMTliZDFmMjA5MDMxMDRlMTgwOTNiOTdhY2Q4MDU4ZjU3N2JkZmE5NzM5N2ExOWYwMzhjNjAxNGEzZjNiNDk2YWVhZWMzNWJkYzIxNzI0OTBjZWM4ZDE1MjExZWY4MTgzZDMyNjVjNGNmYWY3MDVlNjkyNjgxYWZjMmU=");
-// myHeaders.append("fog-user-token", "OTgxMzVkMDg0NmY2NGNlOWIyN2I3NzUxYmI4MDQ3NGE1NTI4MWUwNDZjZGRmNTM0OWQ2N2FiN2U4MjRiMDYyYTg4NmM3ZDFiODU4NTAxZWI4ZWNhZTQ3YmRiNjYwMmZkZmMyYjUyZDMzZWVhZDU5NjZlZGYwYWQ0ODUxNTNkZDM=");
-// myHeaders.append("Content-Type", "text/plain");
-
-// var raw = "{\"taskTypeID\":1}";
-// var requestOptions = {
-//   method: 'POST',
-//   headers: myHeaders,
-//   body: raw,
-//   redirect: 'follow'
-// };
-
 
 export default function Scanner({ navigation }) {
   const isFocused = useIsFocused();
@@ -26,7 +14,24 @@ export default function Scanner({ navigation }) {
   const goBack2 = () => { navigation.navigate('parametre') }
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  // const [donnee, setDonnee] = useState("");
+  const [donnee, setDonnee] = useState("");
+  const ip = useSelector(selectIP);
+  const user = useSelector(selectUser);
+  const api = useSelector(selectApi);
+  var myHeaders = new Headers();
+  myHeaders.append("fog-api-token", `${api}`);
+  myHeaders.append("fog-user-token", `${user}`);
+  myHeaders.append("Content-Type", "text/plain");
+
+  var raw = "{\"taskTypeID\":1}";
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+
 
   useEffect(() => {
     (async () => {
@@ -38,17 +43,17 @@ export default function Scanner({ navigation }) {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    // setDonnee(data);
+    setDonnee(data);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`)
   };
 
-  // const Maj = () => {
-  //   setScanned(false);
-  //   fetch(`http://192.168.5.252/fog/host/${donnee}/task`, requestOptions)
-  //   .then(response => response.text())
-  //   .then(result => console.log(result))
-  //   .catch(error => console.log('error', error));
-  // };
+  const Maj = () => {
+    setScanned(false);
+    fetch(`http://${ip}/fog/host/${donnee}/task`, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
 
 
   if (hasPermission === null) {
@@ -89,7 +94,7 @@ export default function Scanner({ navigation }) {
       <View style={styles.Footer}>
         <View style={styles.rectangle2} />
         {scanned && <View style={styles.Bouton_mise}>
-          <TouchableOpacity style={styles.container_bouton} onPress={() => { setScanned(false) }} >
+          <TouchableOpacity style={styles.container_bouton} onPress={() => { Maj() }} >
             <Text style={styles.mettre_a_jour}>Mettre à jour</Text>
           </TouchableOpacity>
         </View>}

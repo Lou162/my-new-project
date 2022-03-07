@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { View, Text,TouchableOpacity, Image, TextInput } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import { style } from "../styles/style_parametre";
-import {useSelector, useDispatch} from 'react-redux';
-import {selectApi, selectIP, selectUser, setIP, setUser, setApi} from "../src/IP_adresseSlice";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectApi, selectIP, selectUser, setIP, setUser, setApi } from "../src/IP_adresseSlice";
 
 export default function Parametrage({ navigation }) {
     const Ip = useSelector(selectIP);
@@ -11,6 +11,17 @@ export default function Parametrage({ navigation }) {
     const dispatch = useDispatch();
     const [modif, setModif] = useState(false);
     const goBack = () => navigation.goBack('Scan');
+    const ValidateIPaddress = () => {
+
+        if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(`${Ip}`)) {
+            console.log("l'adresse est bonne")
+            setModif(false);
+        }
+        else {
+            alert("You have entered an invalid IP address!")
+        }
+
+    }
     // console.log(Ip)
     return (
         <View style={style.container}>
@@ -33,8 +44,9 @@ export default function Parametrage({ navigation }) {
                         onChangeText={(nextIp) => dispatch(setIP(nextIp))}
                         value={Ip}
                         editable={modif}
-                        selectTextOnFocus={modif} 
-                        />
+                        selectTextOnFocus={modif}
+                    />
+
                 </View>
                 <View style={style.parametre_ip_2}>
                     <Text style={style.Ip}>User Token</Text>
@@ -52,8 +64,6 @@ export default function Parametrage({ navigation }) {
                     <TextInput
                         style={style.input}
                         underlineColorAndroid="transparent"
-                        placeholder={" Entrez votre token"}
-                        placeholderTextColor="rgba(136,149,179,1)"
                         autoCapitalize="none"
                         value={Api}
                         onChangeText={value => dispatch(setApi(value))}
@@ -65,17 +75,16 @@ export default function Parametrage({ navigation }) {
             <View style={style.footer}>
                 <View style={style.rectangle2} />
                 {!modif && <View style={style.container_modifier}>
-                    <TouchableOpacity style={style.bouton_modifier} disabled={modif} onPress={() => { setModif(true)}}>
+                    <TouchableOpacity style={style.bouton_modifier} disabled={modif} onPress={() => { setModif(true) }}>
                         <Text style={style.modifier}>Modifier</Text>
                     </TouchableOpacity>
                 </View>}
                 {modif && <View style={style.container_valider}>
-                    <TouchableOpacity style={style.bouton_valider} disabled={!modif} onPress={() => { setModif(false) }}>
+                    <TouchableOpacity style={style.bouton_valider} disabled={!modif} onPress={() => { ValidateIPaddress() }}>
                         <Text style={style.valider}>Valider</Text>
                     </TouchableOpacity>
                 </View>}
             </View>
-            {/* <Button title={'goBack'} onPress={goBack}/> */}
         </View>
     )
 }
