@@ -21,7 +21,26 @@ export default function Tache({ navigation }) {
       'fog-api-token': `${api}`,
       'fog-user-token': `${user}`
     }
-  };
+    };
+
+    const cancel = (host)=>{
+      var config2 = {
+        method: 'delete',
+        url: `http://${ip}/fog/host/${host}/cancel`,
+        headers: { 
+          'fog-api-token': `${api}`, 
+          'fog-user-token': `${user}`
+        },
+      };
+      axios(config2)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+ 
   useEffect(() => {
     isMountedRef.current = true;
     axios(config)
@@ -53,17 +72,19 @@ export default function Tache({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={style.liste_machine}>
-        {/* <Text style={style.etat}>{ip} : {user} : {api}</Text> */}
         {
           donnee.map((prop) => {
             return (
-              <Text key={prop.id}>{prop.host["name"]} : {prop.state["name"]}</Text>
+              <TouchableOpacity key={prop.id} onPress={() => { cancel(prop.host["id"]) }}>
+                <View>
+                <Text > {prop.host["id"]} : {prop.host["name"]} : {prop.state["name"]}</Text>
+                </View>    
+              </TouchableOpacity>
+              
             );
           })
         }
       </View>
-
-      {/* <Button onPress={goBack} title={`Go back`} /> */}
     </View>
   );
 }

@@ -116,6 +116,14 @@ const style = StyleSheet.create({
         textAlign: "left",
         textAlignVertical: "top",
         letterSpacing: 0.1
+    },
+    rectangle12:{
+        position:"absolute",
+        width:287,
+        height:16,
+        transform:[{translateX:0},{translateY:0},{rotate:"0deg"}],
+        overflow: "hidden",
+        backgroundColor: "rgba(0,0,0,0)"
     }
 });
 
