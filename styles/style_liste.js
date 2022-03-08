@@ -94,7 +94,7 @@ const style = StyleSheet.create({
     liste_machine: {
         position: "absolute",
         width: 247,
-        height: 91,
+        height: 520,
         transform: [{ translateX: 57 }, { translateY: 150 }, { rotate: "0deg" }],
         overflow: "hidden",
         backgroundColor: "rgba(0,0,0,0)",
@@ -117,13 +117,12 @@ const style = StyleSheet.create({
         textAlignVertical: "top",
         letterSpacing: 0.1
     },
-    rectangle12:{
-        position:"absolute",
-        width:287,
-        height:16,
-        transform:[{translateX:0},{translateY:0},{rotate:"0deg"}],
-        overflow: "hidden",
-        backgroundColor: "rgba(0,0,0,0)"
+    text:{
+        fontFamily:"Roboto",
+        fontWeight:"500",
+        textDecorationLine:"none",
+        fontSize:14,
+        color:"rgba(136,149,179,1)"
     }
 });
 

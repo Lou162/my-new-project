@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import { style } from "../styles/style_liste";
@@ -71,20 +71,20 @@ export default function Tache({ navigation }) {
             source={require('../images/reglages.png')} />
         </TouchableOpacity>
       </View>
-      <View style={style.liste_machine}>
+      <ScrollView style={style.liste_machine}>
         {
           donnee.map((prop) => {
             return (
               <TouchableOpacity key={prop.id} onPress={() => { cancel(prop.host["id"]) }}>
                 <View>
-                <Text > {prop.host["id"]} : {prop.host["name"]} : {prop.state["name"]}</Text>
+                <Text >{prop.host["name"]} : <Text style={style.text}>{prop.state["name"]} {"\n"}</Text></Text>
                 </View>    
               </TouchableOpacity>
               
             );
           })
         }
-      </View>
+      </ScrollView>
     </View>
   );
 }
