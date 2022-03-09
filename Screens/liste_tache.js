@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from "react-native";
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import { style } from "../styles/style_liste";
@@ -21,26 +21,40 @@ export default function Tache({ navigation }) {
       'fog-api-token': `${api}`,
       'fog-user-token': `${user}`
     }
-    };
+  };
 
-    const cancel = (host)=>{
-      var config2 = {
-        method: 'delete',
-        url: `http://${ip}/fog/host/${host}/cancel`,
-        headers: { 
-          'fog-api-token': `${api}`, 
-          'fog-user-token': `${user}`
-        },
-      };
-      axios(config2)
-        .then(function (response) {
-          console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+  const cancel = (host) => {
+    var config2 = {
+      method: 'delete',
+      url: `http://${ip}/fog/host/${host}/cancel`,
+      headers: {
+        'fog-api-token': `${api}`,
+        'fog-user-token': `${user}`
+      },
     };
- 
+    axios(config2)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const createTwoButtonAlert = (machine) =>
+    Alert.alert(
+      "Attention",
+      "Vous êtes sûr de vouloir supprimer cette machine ?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+        },
+        { text: "OK", onPress: () => cancel(machine) }
+      ]
+    );
+
+
   useEffect(() => {
     isMountedRef.current = true;
     axios(config)
@@ -75,12 +89,12 @@ export default function Tache({ navigation }) {
         {
           donnee.map((prop) => {
             return (
-              <TouchableOpacity key={prop.id} onPress={() => { cancel(prop.host["id"]) }}>
+              <TouchableOpacity key={prop.id} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
                 <View>
-                <Text >{prop.host["name"]} : <Text style={style.text}>{prop.state["name"]} {"\n"}</Text></Text>
-                </View>    
+                  <Text >{prop.host["name"]} : <Text style={style.text}>{prop.state["name"]} {"\n"}</Text></Text>
+                </View>
               </TouchableOpacity>
-              
+
             );
           })
         }
