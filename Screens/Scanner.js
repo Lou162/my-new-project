@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import BarcodeMask from 'react-native-barcode-mask';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import {Camera} from "expo-camera"
 import { useIsFocused } from "@react-navigation/native";
 
 import { styles } from "../styles/style_scanner"
@@ -36,7 +36,7 @@ export default function Scanner({ navigation }) {
   useEffect(() => {
     (async () => {
       const { status } = await
-        BarCodeScanner.requestPermissionsAsync();
+        Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);
@@ -65,10 +65,10 @@ export default function Scanner({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {isFocused && <BarCodeScanner
+      {isFocused && <Camera
         id="scanner"
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={styles.QR_Code}
+        style={StyleSheet.absoluteFillObject}
       />}
       <BarcodeMask edgeColor="#62B1F6" showAnimatedLine />
       <View style={styles.Header}>
