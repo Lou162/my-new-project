@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Text, View, Image, TouchableOpacity,StyleSheet, Modal} from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
+import BarcodeMask from 'react-native-barcode-mask';
+import {Camera} from 'expo-camera';
 import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
@@ -7,6 +12,7 @@ import {Camera} from "expo-camera"
 import { useIsFocused } from "@react-navigation/native";
 
 import { styles } from "../styles/style_scanner"
+import { style } from "../styles/style_accueil"
 
 export default function Scanner({ navigation }) {
   const isFocused = useIsFocused();
@@ -41,10 +47,9 @@ export default function Scanner({ navigation }) {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ data }) => {
     setScanned(true);
     setDonnee(data);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`)
   };
 
   const Maj = () => {
@@ -57,7 +62,19 @@ export default function Scanner({ navigation }) {
 
 
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
+    return (
+    <View style={style.container}>
+      <Image
+        style={style.fond}
+        source={require('../images/Group_19.png')} />
+      <View style={style.group1}>
+        <Image
+          style={style.qr_code_image}
+          source={require('../images/qr-code.png')} />
+          <Text style={style.qr_code}>Qr code</Text>
+          <Text style={style.scanner}>Scanner</Text>
+      </View>
+    </View>);
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
@@ -72,10 +89,10 @@ export default function Scanner({ navigation }) {
       />}
       <BarcodeMask edgeColor="#62B1F6" showAnimatedLine />
       <View style={styles.Header}>
-        <View style={styles.rectangle1} />
-        <TouchableOpacity style={styles.group9} onPress={goBack}>
+        <View style={styles.rectangle14} />
+        <TouchableOpacity style={styles.liste_bouton} onPress={goBack}>
           <Image
-            style={styles.logo}
+            style={styles.liste}
             source={require('../images/copy.png')} />
         </TouchableOpacity>
 
@@ -83,26 +100,30 @@ export default function Scanner({ navigation }) {
           QR CODE APP
         </Text>
         <View>
-          <TouchableOpacity style={styles.group10} onPress={goBack2}>
+          <TouchableOpacity style={styles.parametre_bouton} onPress={goBack2}>
             <Image
               style={styles.reglage}
               source={require('../images/reglages.png')} />
           </TouchableOpacity>
-
         </View>
       </View>
-      <View style={styles.Footer}>
-        <View style={styles.rectangle2} />
-        {scanned && <View style={styles.Bouton_mise}>
-          <TouchableOpacity style={styles.container_bouton} onPress={() => { Maj() }} >
-            <Text style={styles.mettre_a_jour}>Mettre à jour</Text>
-          </TouchableOpacity>
-        </View>}
-        {scanned && <View style={styles.Bouton_Annuler}>
-          <TouchableOpacity style={styles.container_bouton2} onPress={() => { setScanned(false) }} >
-            <Text style={styles.Annuler}>Annuler</Text>
-          </TouchableOpacity>
-        </View>}
+      <View>
+        <Modal
+        style={styles.modal}
+          animationType={"slide"}
+          transparent={false}
+          visible={scanned}>
+            <Text style={styles.scan_fait}>Scan {donnee}</Text>
+            <Image
+              style={styles.image}
+              source={require('../images/Group_6.png')}/>
+              <TouchableOpacity style={styles.group6} onPress={() => { Maj() }}>
+                <Text style={styles.mise}>mettre à jour</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.group20} onPress={() => { setScanned(false)}}>
+                <Text style={styles.annuler}>cancel</Text>
+              </TouchableOpacity>
+          </Modal>
       </View>
     </View>
   );
