@@ -4,11 +4,6 @@ import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import BarcodeMask from 'react-native-barcode-mask';
 import {Camera} from 'expo-camera';
-import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
-import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
-import BarcodeMask from 'react-native-barcode-mask';
-import {Camera} from "expo-camera"
 import { useIsFocused } from "@react-navigation/native";
 
 import { styles } from "../styles/style_scanner"
