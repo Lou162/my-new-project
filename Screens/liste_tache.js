@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert, ImageBackground } from "react-native";
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import { style } from "../styles/style_liste";
@@ -71,30 +71,36 @@ export default function Tache({ navigation }) {
 
   return (
     <View style={style.container}>
-      <View style={style.Header}>
-        <View style={style.rectangle1} />
-        <Text style={style.liste_des_ordi}>Liste des ordinateurs</Text>
+      <View style={style.liste_icon}>
         <TouchableOpacity style={style.bouton_retour} onPress={goBack}>
           <Image
             style={style.fleche}
             source={require('../images/fleche-petite-gauche.png')} />
         </TouchableOpacity>
+      </View>
+      <View style={style.parametre_icone}>
         <TouchableOpacity style={style.bouton_reglage} onPress={goBack2}>
           <Image
             style={style.reglage}
             source={require('../images/reglages.png')} />
         </TouchableOpacity>
       </View>
+      <Text style={style.appareils}>APPAREILS</Text>
+
       <ScrollView style={style.liste_machine}>
         {
           donnee.map((prop) => {
             return (
-              <TouchableOpacity key={prop.id} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
-                <View>
-                  <Text >{prop.host["name"]} : <Text style={style.text}>{prop.state["name"]} {"\n"}</Text></Text>
+                <View key={prop.id} style={style.container2}>
+                  <Image source={require('../images/Group_8.png')} style={style.background}/>
+                    <View style={style.group2}>
+                      <Text style={style.name}>{prop.host["name"]}{"\n"}</Text> 
+                      <Text style={style.text}>{prop.state["name"]} {"\n"}</Text>
+                    </View> 
+                    <TouchableOpacity onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
+                      <Image source={require('../images/Group_12.png')} style={style.supprimer}/>
+                    </TouchableOpacity>    
                 </View>
-              </TouchableOpacity>
-
             );
           })
         }
