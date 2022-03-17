@@ -55,7 +55,7 @@ export default function Tache({ navigation }) {
     );
 
 
-  useEffect(() => {
+  useEffect (() => {
     isMountedRef.current = true;
     axios(config)
       .then(function (response) {
@@ -87,20 +87,24 @@ export default function Tache({ navigation }) {
       </View>
       <Text style={style.appareils}>APPAREILS</Text>
 
-      <ScrollView style={style.liste_machine}>
+      <ScrollView style={style.frame3}>
         {
           donnee.map((prop) => {
             return (
-                <View key={prop.id} style={style.container2}>
+                <View key={prop.id} style={style.liste_machine}>
                   <Image source={require('../images/Group_8.png')} style={style.background}/>
                     <View style={style.group2}>
                       <Text style={style.name}>{prop.host["name"]}{"\n"}</Text> 
                       <Text style={style.text}>{prop.state["name"]} {"\n"}</Text>
-                    </View> 
-                    <TouchableOpacity onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
-                      <Image source={require('../images/Group_12.png')} style={style.supprimer}/>
-                    </TouchableOpacity>    
+                    </View>
+                    <View style={style.group22}>
+                      <TouchableOpacity style={style.contSup} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
+                        <Image source={require('../images/Group_12.png')} style={style.supprimer}/>
+                      </TouchableOpacity>
+                    </View>
+                    <Text>{"\n"}</Text>    
                 </View>
+
             );
           })
         }
