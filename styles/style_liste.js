@@ -91,70 +91,82 @@ const style = StyleSheet.create({
         position:"absolute",
         width:"auto",
         height:"auto",
-        left:14,
+        left:62,
         right:"auto",
-        top:234,
+        top:221,
         bottom:"auto",
         display:"flex",
         flexDirection:"column"
     },
     background:{
-        position:"relative",
-        width:331,
-        height:104,
+        position:"absolute",
+        width:236,
+        height:49,
         left:0,
         right:"auto",
-        top:-1,
-        bottom:"auto"
     },
     group2:{
         position:"absolute",
-        width:186,
-        height:63,
-        transform:[{translateX:29},{translateY:20},{rotate:"0deg"}]
+        width:60,
+        height:14,
+        transform:[{translateX:21},{translateY:17},{rotate:"0deg"}]
     },
     name:{
         position:"absolute",
-        width:186,
-        height:31,
+        width:"auto",
+        height:"auto",
         left:0,
         right:"auto",
         fontFamily:"Roboto",
         fontWeight:"500",
-        fontSize:24,
+        fontSize:12,
         color:"rgba(0,0,0,1)",
         textAlign: "center",
         textAlignVertical:"top"
     },
     text:{
         position:"absolute",
-        width:95,
+        width:"auto",
         height:"auto",
-        left:46,
+        left:39,
         right:"auto",
-        transform:[{translateX:0},{translateY:31},{rotate:"0deg"}],
         fontFamily:"Roboto",
         fontWeight:"400",
-        fontSize:14,
+        fontSize:12,
         color:"rgba(0,0,0,1)",
         textAlign:"center",
         textAlignVertical:"top"
     },
+    liste_machine:{
+        position:"relative",
+        width:236,
+        height:49,
+        marginBottom:15
+    },
     group22:{
         position:"absolute",
-        width:51,
+        width:50,
         height:51,
-        transform:[{translateX:250},{translateY:29},{rotate:"0deg"}]
+        transform:[{translateX:186},{translateY:9},{rotate:"0deg"}]
     },
     contSup:{
         position:"absolute",
-        width:51,
-        height:51,
+        width:50,
+        height:50,
         left:0,
         right:"auto",
         top:0,
-        bottom:"auto"
+        bottom:"auto",
     },
+    supprimer:{
+        position:"absolute",
+        width:30,
+        height:30,
+        left:0,
+        right:"auto",
+        top:1,
+        bottom:"auto"
+    }
     
 });
 

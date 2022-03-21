@@ -26,13 +26,21 @@ export default function Parametrage({ navigation }) {
     return (
         <View style={style.container}>
             <View style={style.Header}>
-                <View style={style.rectangle1} />
                 <Text style={style.parametre}>Paramètres</Text>
+                <View style={style.Group_6}>
                 <TouchableOpacity style={style.bouton_retour} onPress={goBack}>
                     <Image
                         style={style.fleche}
                         source={require("../images/fleche-petite-gauche.png")} />
                 </TouchableOpacity>
+                </View>
+                <View style ={style.group_31}>
+                    <TouchableOpacity style={style.rectangle6} disabled={!modif} onPress={() => { ValidateIPaddress() }} >
+                        <Text style={style.confirm}>confirmer</Text>
+                    </TouchableOpacity>    
+                </View>
+                
+                    
             </View>
             <View style={style.param}>
                 <View style={style.parametre_ip}>
@@ -72,19 +80,14 @@ export default function Parametrage({ navigation }) {
                 </View>
             </View>
 
-            <View style={style.footer}>
-                <View style={style.rectangle2} />
                 {!modif && <View style={style.container_modifier}>
                     <TouchableOpacity style={style.bouton_modifier} disabled={modif} onPress={() => { setModif(true) }}>
                         <Text style={style.modifier}>Modifier</Text>
                     </TouchableOpacity>
                 </View>}
-                {modif && <View style={style.container_valider}>
-                    <TouchableOpacity style={style.bouton_valider} disabled={!modif} onPress={() => { ValidateIPaddress() }}>
-                        <Text style={style.valider}>Valider</Text>
-                    </TouchableOpacity>
-                </View>}
+                <Image
+                style={style.illustration}
+                 source={require("../images/illustration.jpg")}/>
             </View>
-        </View>
     )
 }
