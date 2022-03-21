@@ -92,15 +92,15 @@ export default function Tache({ navigation }) {
           donnee.map((prop) => {
             return (
                 <View key={prop.id} style={style.liste_machine}>
-                  <Image source={require('../images/Rectangle_18.png')} style={style.background}/>
+                  <TouchableOpacity style={style.background} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
+                    <Image source={require('../images/Rectangle_18.png')} style={style.background}/>
+                  </TouchableOpacity>
+                  
                     <View style={style.group2}>
                       <Text style={style.name}>{prop.host["name"]}</Text> 
                       <Text style={style.text}>{prop.state["name"]} {"\n"}</Text>
                     </View>
                     <View style={style.group22}>
-                      <TouchableOpacity style={style.contSup} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
-                        <Image source={require('../images/Group_31.png')} style={style.supprimer}/>
-                      </TouchableOpacity>
                     </View>
                     <Text>{"\n"}</Text>    
                 </View>

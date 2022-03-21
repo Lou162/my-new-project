@@ -99,11 +99,10 @@ const style = StyleSheet.create({
         flexDirection:"column"
     },
     background:{
-        position:"absolute",
+        // position:"relative",
         width:236,
         height:49,
-        left:0,
-        right:"auto",
+        // right:"auto",
     },
     group2:{
         position:"absolute",
@@ -151,8 +150,8 @@ const style = StyleSheet.create({
     },
     contSup:{
         position:"absolute",
-        width:30,
-        height:30,
+        width:50,
+        height:50,
         left:0,
         right:"auto",
         top:0,
