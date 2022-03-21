@@ -145,18 +145,19 @@ const style = StyleSheet.create({
     },
     group22:{
         position:"absolute",
-        width:50,
-        height:51,
-        transform:[{translateX:186},{translateY:9},{rotate:"0deg"}]
+        width:30,
+        height:31,
+        transform:[{translateX:186},{translateY:9}]
     },
     contSup:{
         position:"absolute",
-        width:50,
-        height:50,
+        width:30,
+        height:30,
         left:0,
         right:"auto",
         top:0,
         bottom:"auto",
+        backgroundColor:"rgba(0,0,0,1)"
     },
     supprimer:{
         position:"absolute",
@@ -164,7 +165,7 @@ const style = StyleSheet.create({
         height:30,
         left:0,
         right:"auto",
-        top:1,
+        top:0,
         bottom:"auto"
     }
     

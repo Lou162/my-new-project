@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert, ImageBackground } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert} from "react-native";
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import { style } from "../styles/style_liste";
