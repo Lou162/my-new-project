@@ -105,7 +105,7 @@ export default function Tache({ navigation }) {
                     <Text>{"\n"}</Text>    
                 </View>
 
-            );
+            ); 
           })
         }
       </ScrollView>

@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./images/image_2.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "FogScanner.app"
