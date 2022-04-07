@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     overflow: "hidden",
     transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: "rgba(1,1,1,1)",
     left: 0,
     top: 0
   },

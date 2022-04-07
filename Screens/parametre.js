@@ -22,25 +22,24 @@ export default function Parametrage({ navigation }) {
         }
 
     }
-    // console.log(Ip)
     return (
         <View style={style.container}>
             <View style={style.Header}>
                 <Text style={style.parametre}>Paramètres</Text>
                 <View style={style.Group_6}>
-                <TouchableOpacity style={style.bouton_retour} onPress={goBack}>
-                    <Image
-                        style={style.fleche}
-                        source={require("../images/fleche-petite-gauche.png")} />
-                </TouchableOpacity>
+                    <TouchableOpacity style={style.bouton_retour} onPress={goBack}>
+                        <Image
+                            style={style.fleche}
+                            source={require("../images/fleche-petite-gauche.png")} />
+                    </TouchableOpacity>
                 </View>
-                <View style ={style.group_31}>
+                <View style={style.group_31}>
                     <TouchableOpacity style={style.rectangle6} disabled={!modif} onPress={() => { ValidateIPaddress() }} >
                         <Text style={style.confirm}>confirmer</Text>
-                    </TouchableOpacity>    
+                    </TouchableOpacity>
                 </View>
-                
-                    
+
+
             </View>
             <View style={style.param}>
                 <View style={style.parametre_ip}>
@@ -80,14 +79,14 @@ export default function Parametrage({ navigation }) {
                 </View>
             </View>
 
-                {!modif && <View style={style.container_modifier}>
-                    <TouchableOpacity style={style.bouton_modifier} disabled={modif} onPress={() => { setModif(true) }}>
-                        <Text style={style.modifier}>Modifier</Text>
-                    </TouchableOpacity>
-                </View>}
-                <Image
+            {!modif && <View style={style.container_modifier}>
+                <TouchableOpacity style={style.bouton_modifier} disabled={modif} onPress={() => { setModif(true) }}>
+                    <Text style={style.modifier}>Modifier</Text>
+                </TouchableOpacity>
+            </View>}
+            <Image
                 style={style.illustration}
-                 source={require("../images/illustration.jpg")}/>
-            </View>
+                source={require("../images/illustration.jpg")} />
+        </View>
     )
 }

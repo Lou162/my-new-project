@@ -88,12 +88,12 @@ const style = StyleSheet.create({
         textAlignVertical:"top"
     },
     frame3:{
-        position:"absolute",
+        position:"relative",
         width:"auto",
         height:"auto",
         left:62,
         right:"auto",
-        top:221,
+        top:200,
         bottom:"auto",
         display:"flex",
         flexDirection:"column"

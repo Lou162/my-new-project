@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert} from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from "react-native";
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import { style } from "../styles/style_liste";
@@ -55,7 +55,7 @@ export default function Tache({ navigation }) {
     );
 
 
-  useEffect (() => {
+  useEffect(() => {
     isMountedRef.current = true;
     axios(config)
       .then(function (response) {
@@ -91,21 +91,21 @@ export default function Tache({ navigation }) {
         {
           donnee.map((prop) => {
             return (
-                <View key={prop.id} style={style.liste_machine}>
-                  <TouchableOpacity style={style.background} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
-                    <Image source={require('../images/Rectangle_18.png')} style={style.background}/>
-                  </TouchableOpacity>
-                  
-                    <View style={style.group2}>
-                      <Text style={style.name}>{prop.host["name"]}</Text> 
-                      <Text style={style.text}>{prop.state["name"]} {"\n"}</Text>
-                    </View>
-                    <View style={style.group22}>
-                    </View>
-                    <Text>{"\n"}</Text>    
-                </View>
+              <View key={prop.id} style={style.liste_machine}>
+                <TouchableOpacity style={style.background} onPress={() => { createTwoButtonAlert(prop.host["id"]) }}>
+                  <Image source={require('../images/Rectangle_18.png')} style={style.background} />
+                </TouchableOpacity>
 
-            ); 
+                <View style={style.group2}>
+                  <Text style={style.name}>{prop.host["name"]}</Text>
+                  <Text style={style.text}>{prop.state["name"]} {"\n"}</Text>
+                </View>
+                <View style={style.group22}>
+                </View>
+                <Text>{"\n"}</Text>
+              </View>
+
+            );
           })
         }
       </ScrollView>

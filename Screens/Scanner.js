@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity,StyleSheet, Modal} from 'react-nati
 import { useSelector } from 'react-redux';
 import { selectUser, selectApi, selectIP } from "../src/IP_adresseSlice";
 import BarcodeMask from 'react-native-barcode-mask';
-import {Camera} from 'expo-camera';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useIsFocused } from "@react-navigation/native";
 
 import { styles } from "../styles/style_scanner"
@@ -20,10 +20,11 @@ export default function Scanner({ navigation }) {
   const ip = useSelector(selectIP);
   const user = useSelector(selectUser);
   const api = useSelector(selectApi);
+  var axios = require('axios');
+  var data = '{"taskTypeID":1}';
   var myHeaders = new Headers();
   myHeaders.append("fog-api-token", `${api}`);
   myHeaders.append("fog-user-token", `${user}`);
-  myHeaders.append("Content-Type", "text/plain");
 
   var raw = "{\"taskTypeID\":1}";
   var requestOptions = {
@@ -38,7 +39,7 @@ export default function Scanner({ navigation }) {
   useEffect(() => {
     (async () => {
       const { status } = await
-        Camera.requestCameraPermissionsAsync();
+      BarCodeScanner.requestPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);
@@ -49,11 +50,34 @@ export default function Scanner({ navigation }) {
   };
 
   const Maj = () => {
-    setScanned(false);
-    fetch(`http://${ip}/fog/host/${donnee}/task`, requestOptions)
+    if(Number(donnee)){
+      fetch(`http://${ip}/fog/host/${donnee}/task`, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+      console.log(donnee)
+    }
+    else{
+      let donnee_split = donnee.split(" ")
+      var config = {
+        method: 'post',
+        url: `http://${ip}/fog/group/${donnee_split[0]}/task`,
+        headers: { 
+          'fog-api-token': `${api}`, 
+          'fog-user-token': `${user}`, 
+          'Content-Type': 'text/plain'
+        },
+        data : data
+      };
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    };
+    setScanned(false);
   };
 
 
@@ -77,8 +101,9 @@ export default function Scanner({ navigation }) {
   }
 
   return (
+
     <View style={styles.container}>
-      {isFocused && <Camera
+      {isFocused && <BarCodeScanner
         id="scanner"
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}

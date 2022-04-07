@@ -22,7 +22,6 @@ export const IP_addresseSlice = createSlice({
   }
 })
 
-// Action creators are generated for each case reducer function
 export const { setIP, setApi, setUser } = IP_addresseSlice.actions
 export const selectIP = (state) => state.Ip.ip
 export const selectUser = (state) => state.Ip.user
