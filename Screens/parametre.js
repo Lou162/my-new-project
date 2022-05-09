@@ -25,7 +25,6 @@ export default function Parametrage({ navigation }) {
     return (
         <View style={style.container}>
             <View style={style.Header}>
-                <Text style={style.parametre}>Paramètres</Text>
                 <View style={style.Group_6}>
                     <TouchableOpacity style={style.bouton_retour} onPress={goBack}>
                         <Image
@@ -33,15 +32,20 @@ export default function Parametrage({ navigation }) {
                             source={require("../images/fleche-petite-gauche.png")} />
                     </TouchableOpacity>
                 </View>
+                <Text style={style.parametre}>Paramètres</Text>
                 <View style={style.group_31}>
                     <TouchableOpacity style={style.rectangle6} disabled={!modif} onPress={() => { ValidateIPaddress() }} >
                         <Text style={style.confirm}>confirmer</Text>
                     </TouchableOpacity>
                 </View>
-
-
             </View>
+            <Image
+                style={style.illustration}
+                source={require("../images/illustration.jpg")} 
+            />
+
             <View style={style.param}>
+
                 <View style={style.parametre_ip}>
                     <Text style={style.Ip}>Adresse IP</Text>
                     <TextInput
@@ -84,9 +88,6 @@ export default function Parametrage({ navigation }) {
                     <Text style={style.modifier}>Modifier</Text>
                 </TouchableOpacity>
             </View>}
-            <Image
-                style={style.illustration}
-                source={require("../images/illustration.jpg")} />
         </View>
     )
 }

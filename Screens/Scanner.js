@@ -106,11 +106,10 @@ export default function Scanner({ navigation }) {
       {isFocused && <BarCodeScanner
         id="scanner"
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
+        style={styles.scan}
       />}
       <BarcodeMask edgeColor="#62B1F6" showAnimatedLine />
       <View style={styles.Header}>
-        <View style={styles.rectangle14} />
         <TouchableOpacity style={styles.liste_bouton} onPress={goBack}>
           <Image
             style={styles.liste}
@@ -118,7 +117,7 @@ export default function Scanner({ navigation }) {
         </TouchableOpacity>
 
         <Text style={styles.qr_code_app}>
-          QR CODE APP
+          Fog Scanner
         </Text>
         <View>
           <TouchableOpacity style={styles.parametre_bouton} onPress={goBack2}>
@@ -130,11 +129,11 @@ export default function Scanner({ navigation }) {
       </View>
       <View>
         <Modal
-        style={styles.modal}
           animationType={"slide"}
-          transparent={false}
+          transparent={true}
           visible={scanned}>
-            <Text style={styles.scan_fait}>Scan {donnee}</Text>
+            <View style={styles.modal}>
+              <Text style={styles.scan_fait}>Scan {donnee}</Text>
             <Image
               style={styles.image}
               source={require('../images/Group_6.png')}/>
@@ -144,6 +143,8 @@ export default function Scanner({ navigation }) {
               <TouchableOpacity style={styles.group20} onPress={() => { setScanned(false)}}>
                 <Text style={styles.annuler}>cancel</Text>
               </TouchableOpacity>
+            </View>
+            
           </Modal>
       </View>
     </View>

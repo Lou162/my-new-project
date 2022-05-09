@@ -2,15 +2,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const style = StyleSheet.create({
     container: {
-        position: "relative",
-        width: Dimensions.get("window").width,
-        height: 800,
-        borderRadius: 0,
+        flex:1,
         overflow: "hidden",
-        transform: [{ translateX: 0 }, { translateY: 0 }, { rotate: "0deg" }],
-        backgroundColor: "rgba(255,255,255,1)",
-        left: 0,
-        top: 0
     },
     liste_icon:{
         position:"absolute",
